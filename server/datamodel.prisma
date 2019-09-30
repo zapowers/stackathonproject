@@ -1,0 +1,88 @@
+type Creature @db(name: "creatures") {
+  id: Int! @id(strategy: SEQUENCE) @sequence(name: "creatures_id_seq", initialValue: 1, allocationSize: 1)
+  armorClass: Int
+  attackDiceType: Int
+  attackHitDieNumber: Int @default(value: 1)
+  attackNameAndType: String @default(value: "melee")
+  attackPointsAdd: Int @default(value: 0)
+  eighthLevelSpells: Int @default(value: 0)
+  encounterCreature: [EncounterCreature]
+  fifthLevelSpells: Int @default(value: 0)
+  firstLevelSpells: Int @default(value: 0)
+  fourthLevelSpells: Int @default(value: 0)
+  hitDiceNumber: Int
+  hitDiceType: Int
+  hitPointsAdd: Int
+  imageUrl: String @default(value: "http://www.imarvintpa.com/Mapping/Tokens/g1/Gnoll.png")
+  initiativeBonus: Int @default(value: 0)
+  movementSpeed: Int @default(value: 30)
+  name: String!
+  ninthLevelSpells: Int @default(value: 0)
+  secondAttackDiceType: Int
+  secondAttackHitDieNumber: Int @default(value: 1)
+  secondAttackNameAndType: String
+  secondAttackPointsAdd: Int @default(value: 0)
+  secondLevelSpells: Int @default(value: 0)
+  secondToHitBonus: Int @default(value: 0)
+  seventhLevelSpells: Int @default(value: 0)
+  sixthLevelSpells: Int @default(value: 0)
+  spellAttack: Int
+  spellSave: Int
+  thirdLevelSpells: Int @default(value: 0)
+  toHitBonus: Int @default(value: 0)
+}
+
+type Encounter @db(name: "encounters") {
+  id: Int! @id(strategy: SEQUENCE) @sequence(name: "encounters_id_seq", initialValue: 1, allocationSize: 1)
+  encounterCreature: [EncounterCreature]
+  name: String!
+}
+
+type EncounterCreature {
+    id: Int! @id(strategy: SEQUENCE) @sequence(name: "encounters_id_seq", initialValue: 1, allocationSize: 1)
+  # Multiple ID fields (compound indexes) are not supported
+  # creatureId: Creature! @id
+  # Multiple ID fields (compound indexes) are not supported
+  # encounterId: Encounter! @id
+}
+
+type Party @db(name: "parties") {
+  id: Int! @id(strategy: SEQUENCE) @sequence(name: "parties_id_seq", initialValue: 1, allocationSize: 1)
+  armorClass: Int
+  attackDiceType: Int
+  attackHitDieNumber: Int @default(value: 1)
+  attackNameAndType: String @default(value: "melee")
+  attackPointsAdd: Int @default(value: 0)
+  eighthLevelSpells: Int @default(value: 0)
+  fifthLevelSpells: Int @default(value: 0)
+  firstLevelSpells: Int @default(value: 0)
+  fourthLevelSpells: Int @default(value: 0)
+  hitDiceNumber: Int
+  hitDiceType: Int
+  hitPoints: Int
+  hitPointsAdd: Int
+  imageUrl: String @default(value: "https://i.imgur.com/kjxu6KZ.jpg")
+  initiativeBonus: Int @default(value: 0)
+  movementSpeed: Int @default(value: 30)
+  name: String!
+  ninthLevelSpells: Int @default(value: 0)
+  savedPartyId: SavedParty
+  secondAttackDiceType: Int
+  secondAttackHitDieNumber: Int @default(value: 1)
+  secondAttackNameAndType: String
+  secondAttackPointsAdd: Int @default(value: 0)
+  secondLevelSpells: Int @default(value: 0)
+  secondToHitBonus: Int @default(value: 0)
+  seventhLevelSpells: Int @default(value: 0)
+  sixthLevelSpells: Int @default(value: 0)
+  spellAttack: Int
+  spellSave: Int
+  thirdLevelSpells: Int @default(value: 0)
+  toHitBonus: Int @default(value: 0)
+}
+
+type SavedParty @db(name: "savedParties") {
+  id: Int! @id(strategy: SEQUENCE) @sequence(name: "savedParties_id_seq", initialValue: 1, allocationSize: 1)
+  name: String!
+  parties: [Party]
+}

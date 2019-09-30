@@ -1,0 +1,101 @@
+scalar DateTime
+
+type Query {
+    monsters(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): Monsters!
+    partymember(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): PartyMember!
+}
+
+enum CreatureOrderByName {
+  name_ASC
+  name_DESC
+}
+
+enum PartyOrderByName {
+  name_ASC
+  name_DESC
+}
+
+type Monsters {
+  creatures: [Creature!]!
+  count: Int!
+}
+
+type PartyMember {
+  parties: [Party!]!
+  count: Int!
+}
+
+type Mutation {
+  makeParty(name: String!): Party!
+  makeCreature(name: String!): Creature!
+}
+
+type Subscription {
+  newParty: Party
+  newCreature: Creature
+}
+
+type Party {
+  id: ID!
+  name: String!
+  imageUrl: String
+  hitPoints: Int
+  armorClass: Int
+  hitDiceNumber: Int
+  hitDiceType: Int
+  hitPointsAdd: Int
+  initiativeBonus: Int
+  attackNameAndType: String
+  attackHitDieNumber: Int
+  attackHitDiceType: Int
+  attackPointsAdd: Int
+  toHitBonus: Int
+  secondAttackNameAndType: String
+  secondAttackHitDieNumber: Int
+  secondAttackHitDiceType: Int
+  secondAttackPointsAdd: Int
+  secondToHitBonus: Int
+  spellSave: Int
+  spellAttack: Int
+  firstLevelSpells: Int
+  secondLevelSpells: Int
+  thirdLevelSpells: Int
+  fourthLevelSpells: Int
+  fifthLevelSpells: Int
+  sixthLevelSpells: Int
+  seventhLevelSpells: Int
+  eighthLevelSpells: Int
+  ninthLevelSpells: Int
+}
+
+type Creature {
+  id: ID!
+  name: String!
+  imageUrl: String
+  armorClass: Int
+  hitDiceNumber: Int
+  hitDiceType: Int
+  hitPointsAdd: Int
+  initiativeBonus: Int
+  attackNameAndType: String
+  attackHitDieNumber: Int
+  attackHitDiceType: Int
+  attackPointsAdd: Int
+  toHitBonus: Int
+  secondAttackNameAndType: String
+  secondAttackHitDieNumber: Int
+  secondAttackHitDiceType: Int
+  secondAttackPointsAdd: Int
+  secondToHitBonus: Int
+  spellSave: Int
+  spellAttack: Int
+  firstLevelSpells: Int
+  secondLevelSpells: Int
+  thirdLevelSpells: Int
+  fourthLevelSpells: Int
+  fifthLevelSpells: Int
+  sixthLevelSpells: Int
+  seventhLevelSpells: Int
+  eighthLevelSpells: Int
+  ninthLevelSpells: Int
+}
